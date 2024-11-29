@@ -20,3 +20,18 @@ document.querySelectorAll(".door").forEach(door => {
     audioPlayer.play(); // play the chapter
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const doors = document.querySelectorAll(".door");
+  const currentDate = new Date();
+  const currentDay = currentDate.getDate(); // Get the current day (1-31)
+
+  doors.forEach(door => {
+    const doorDay = parseInt(door.textContent); // Extract the number from the door's content
+
+    if (doorDay <= currentDay) {
+      door.classList.add("past"); // Passed or current day
+    } else {
+      door.classList.add("future"); // Future day
+    }
+  });
+});
