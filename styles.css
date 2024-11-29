@@ -56,3 +56,7 @@ body {
 .door.future {
   background-color: red;
 }
+.door.future {
+  pointer-events: none;
+  opacity: 0.5; /* Make them look disabled */
+}

@@ -25,20 +25,6 @@ const chapters = [
   "audio/chapter23.mp3",
   "audio/chapter24.mp3",
 ];
-
-document.querySelectorAll(".door").forEach(door => {
-  door.addEventListener("click", () => {
-    const chapterIndex = door.getAttribute("data-chapter") - 1;
-    const audioSource = document.getElementById("audioSource");
-    const audioPlayer = document.getElementById("audio");
-
-    // Set the source of the audio player to the selected chapter
-    audioSource.src = chapters[chapterIndex];
-    audioPlayer.load(); // reload to update source
-    audioPlayer.play(); // play the chapter
-  });
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   const doors = document.querySelectorAll(".door");
   const currentDate = new Date();
@@ -48,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
   doors.forEach(door => {
     const doorDay = parseInt(door.textContent); // Extract the number from the door's content
 
+    // Determine the status of the door
     if (currentDate >= adventStartDate && currentDate <= adventEndDate) {
-      // Calculate the current Advent day
       const currentAdventDay = Math.floor(
         (currentDate - adventStartDate) / (1000 * 60 * 60 * 24) + 1
       );
@@ -65,5 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
       door.classList.add("future");
       door.setAttribute("title", "Come back during Advent!");
     }
+
+    // Add click event listener
+    door.addEventListener("click", () => {
+      if (door.classList.contains("past")) {
+        // Play audio for "past" or "current" doors
+        const chapterIndex = door.getAttribute("data-chapter") - 1;
+        const audioSource = document.getElementById("audioSource");
+        const audioPlayer = document.getElementById("audio");
+
+        // Set and play the audio source
+        audioSource.src = chapters[chapterIndex];
+        audioPlayer.load(); // Reload to update source
+        audioPlayer.play(); // Play the chapter
+      } else {
+        // Alert for future doors
+        alert("Come back tomorrow to open this door!");
+      }
+    });
   });
 });
