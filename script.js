@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         door.classList.add("past"); // Passed or current day
       } else {
         door.classList.add("future"); // Future day
-        door.setAttribute("title", "Come back tomorrow!"); // Tooltip message
+        door.setAttribute("title", "Dont be too curious, come back on that day :) "); // Tooltip message
       }
     } else {
       // If outside Advent range, mark all as future
