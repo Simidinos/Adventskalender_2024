@@ -28,7 +28,7 @@ const chapters = [
 
 document.addEventListener("DOMContentLoaded", () => {
   const doors = document.querySelectorAll(".door");
-  const currentDate = new Date();
+  const currentDate = new Date(2024, 11, 5);
   const adventStartDate = new Date(2024, 11, 1); // December 1, 2024
   const adventEndDate = new Date(2024, 11, 24); // December 24, 2024
 
