@@ -23,15 +23,27 @@ document.querySelectorAll(".door").forEach(door => {
 document.addEventListener("DOMContentLoaded", () => {
   const doors = document.querySelectorAll(".door");
   const currentDate = new Date();
-  const currentDay = currentDate.getDate(); // Get the current day (1-31)
+  const adventStartDate = new Date(2024, 11, 1); // December 1, 2024
+  const adventEndDate = new Date(2024, 11, 24); // December 24, 2024
 
   doors.forEach(door => {
     const doorDay = parseInt(door.textContent); // Extract the number from the door's content
 
-    if (doorDay <= currentDay) {
-      door.classList.add("past"); // Passed or current day
+    // Check if today's date is within the Advent range
+    if (currentDate >= adventStartDate && currentDate <= adventEndDate) {
+      const currentAdventDay = currentDate.getDate() - adventStartDate.getDate() + 1;
+
+      if (doorDay <= currentAdventDay) {
+        door.classList.add("past"); // Passed or current day
+      } else {
+        door.classList.add("future"); // Future day
+        door.setAttribute("title", "Come back tomorrow!"); // Tooltip message
+      }
     } else {
-      door.classList.add("future"); // Future day
+      // If outside Advent range, mark all as future
+      door.classList.add("future");
+      door.setAttribute("title", "Come back during Advent!");
     }
   });
 });
+
