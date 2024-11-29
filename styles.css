@@ -52,11 +52,10 @@ body {
   background-color: green;
 }
 
-/* For future days */
+/* For future doors */
 .door.future {
   background-color: red;
-}
-.door.future {
-  pointer-events: none;
   opacity: 0.5; /* Make them look disabled */
+  cursor: not-allowed; /* Change the cursor to indicate it's not clickable */
 }
+
