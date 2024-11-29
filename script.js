@@ -25,6 +25,7 @@ const chapters = [
   "audio/chapter23.mp3",
   "audio/chapter24.mp3",
 ];
+
 document.addEventListener("DOMContentLoaded", () => {
   const doors = document.querySelectorAll(".door");
   const currentDate = new Date();
@@ -51,12 +52,14 @@ document.addEventListener("DOMContentLoaded", () => {
       door.classList.add("future");
       door.setAttribute("title", "Come back during Advent!");
     }
+  });
 
-    // Add click event listener
+  // Add click event listener after door statuses are set
+  doors.forEach(door => {
     door.addEventListener("click", () => {
       if (door.classList.contains("past")) {
         // Play audio for "past" or "current" doors
-        const chapterIndex = door.getAttribute("data-chapter") - 1;
+        const chapterIndex = parseInt(door.getAttribute("data-chapter")) - 1;
         const audioSource = document.getElementById("audioSource");
         const audioPlayer = document.getElementById("audio");
 
